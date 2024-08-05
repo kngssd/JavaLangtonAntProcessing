@@ -43,7 +43,6 @@ public class Ant {
         }
         thisCell.toggleActive();
         moveForward();
-        //Notes: In the ground object, "white" squares are "inactive", "black" squares are "active"
     }
 
     private void moveForward() {
