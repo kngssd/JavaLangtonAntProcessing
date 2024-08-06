@@ -34,15 +34,37 @@ public class Ant {
     }
 
     public void update() {
-        Cell thisCell = ground.cellAt(gridPosition);
+        Cell currentCell = ground.cellAt(gridPosition);
 
-        if (thisCell.isActive()) {
+        /**
+         * currentCell = cell that ant is standing on
+         *
+         * IF currentCell is WHITE
+         *      turnClockWise
+         *      change the colour of currentCell to BLACK
+         *      move forward one unit
+         *
+         * ELSE IF currentCell is BLACK
+         *      turnCountedclockwise
+         *      change the colour of currentCell to RED
+         *      move forward one unit
+         *
+         *  ELSE
+         *      change the colour of currentCell to WHITE
+         *      move forward one unit
+         */
+        if (currentCell.getColour().equals(CellColour.WHITE)) {
             turnClockwise();
-        } else {
+            currentCell.setColour(CellColour.BLACK);
+            moveForward();
+        } else if (currentCell.getColour().equals(CellColour.BLACK)) {
             turnCounterclockwise();
+            currentCell.setColour(CellColour.RED);
+            moveForward();
+        } else {
+            currentCell.changeColour();
+            moveForward();
         }
-        thisCell.toggleActive();
-        moveForward();
     }
 
     private void moveForward() {

@@ -64,9 +64,24 @@ public class Ground {
 
     void draw() {
         applet.stroke(100);
+        /**
+         * IF a cell's colour is WHITE
+         *      set a fill colour of a drawn cell to white
+         * ELSE IF a cell's colour is BLACK
+         *      set a fill colour of a cell black
+         * ELSE IF a cell's colour is RED
+         *      set a fill colour of a cell red
+         */
+
         for (List<Cell> rowOfCells : rowsOfCells) {
             for (Cell cell : rowOfCells) {
-                applet.fill(cell.isActive() ? 40 : 255);
+                if (cell.getColour().equals(CellColour.WHITE)) {
+                    applet.fill(255, 255, 255);
+                } else if (cell.getColour().equals(CellColour.BLACK)) {
+                    applet.fill(0, 0, 0);
+                } else {
+                    applet.fill(255, 0, 0);
+                }
                 Ground.drawSquareAtGridPosition(
                         cell.gridPosition(), applet, cellSize);
             }
